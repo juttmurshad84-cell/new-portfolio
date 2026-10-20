@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MURSHAD — Social Advertising Portfolio — Cinematic Case Study Template</title>
+<meta name="description" content="Premium cinematic Behance case study template for multi-industry social media advertising portfolio. Dark charcoal, scroll-synced video, editorial layouts.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+</head>
+<body>
+
+<!-- Grain + Vignette Overlays -->
+<div class="grain" aria-hidden="true"></div>
+<div class="vignette" aria-hidden="true"></div>
+
+<!-- Progress Line -->
+<div class="progress-bar"><span id="progressFill"></span></div>
+
+<!-- Background Video System -->
+<div class="video-stage" aria-hidden="true">
+  <!-- 
+    ╔══════════════════════════════════════════════════════════╗
+    ║  REPLACE VIDEO HERE                                    ║
+    ║  Drop your 1920×1080+ MP4/WebM here. Keep muted+playsinline.
+    ║  Poster = first frame for fast load.                   ║
+    ╚══════════════════════════════════════════════════════════╝
+  -->
+  <video id="bgVideo" class="bg-video" muted playsinline preload="auto" loop poster="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920&auto=format&fit=crop" crossorigin="anonymous">
+    <!-- Primary cinematic placeholder — replace src with your file -->
+    <source src="https://videos.pexels.com/video-files/18069234/18069234-uhd_1440_1440_24fps.mp4" type="video/mp4">
+    <!-- Fallback cinematic loop -->
+    <source src="https://cdn.coverr.co/videos/coverr-abstract-network-connections-1573/1080p.mp4" type="video/mp4">
+  </video>
+  <div class="video-overlay"></div>
+  <div class="video-overlay video-overlay--bottom"></div>
+  <!-- Poster fallback while video loads -->
+  <div class="video-poster" id="videoPoster" style="background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1920&auto=format&fit=crop')"></div>
+</div>
+
+<!-- Custom Cursor (desktop only) -->
+<div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+<div class="cursor-ring" id="cursorRing" aria-hidden="true"><span class="cursor-label" id="cursorLabel"></span></div>
+
+<!-- Loader -->
+<div class="loader" id="loader">
+  <div class="loader-inner">
+    <div class="loader-top">
+      <span class="mono">TEMPLATE — CASE STUDY v1.0</span>
+      <span class="mono" id="loaderPercent">00%</span>
+    </div>
+    <div class="loader-title">
+      <div class="loader-line"><span>MURSHAD</span></div>
+      <div class="loader-line"><span>STUDIO</span></div>
+      <div class="loader-sub mono">CINEMATIC / EDITORIAL / INTERACTIVE — LOADING EXPERIENCE</div>
+    </div>
+    <div class="loader-bar"><span id="loaderBar"></span></div>
+    <div class="loader-foot mono">SCROLL-SYNCED VIDEO • CUSTOM CURSOR • EDITORIAL GRID • 10 SECTIONS<br>Replace placeholders with your PNGs — structure remains</div>
+  </div>
+</div>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+  <div class="nav-left">
+    <a href="#" class="nav-logo" data-cursor="HOME">
+      <span class="nav-logo-mark"></span>
+      <span class="mono">MURSHAD — STUDIO ©2025</span>
+    </a>
+  </div>
+  <div class="nav-center hide-mobile">
+    <div class="nav-progress mono"><span id="navProgress">01 — 10</span> <i class="nav-progress-track"><i id="navProgressFill"></i></i> <span id="navSectionName">CINEMATIC OPENING</span></div>
+  </div>
+  <div class="nav-right">
+    <button class="mono nav-menu-btn" id="indexBtn" data-cursor="INDEX">INDEX (10) — MENU</button>
+    <a href="#closing" class="btn btn--tiny hide-mobile" data-cursor="CONTACT">START PROJECT →</a>
+  </div>
+</nav>
+
+<!-- Index Drawer -->
+<div class="index-drawer" id="indexDrawer" aria-hidden="true">
+  <div class="index-backdrop" id="indexBackdrop"></div>
+  <div class="index-panel">
+    <div class="index-head">
+      <span class="mono">NAVIGATION — 10 CHAPTERS</span>
+      <button class="index-close" id="indexClose" aria-label="Close">×</button>
+    </div>
+    <ol class="index-list">
+      <li><a href="#section-01" data-index="01"><em>01</em><span>Cinematic Opening</span><small>Full-screen video + oversized type</small></a></li>
+      <li><a href="#section-02" data-index="02"><em>02</em><span>Project Introduction</span><small>Editorial intro + metadata</small></a></li>
+      <li><a href="#section-03" data-index="03"><em>03</em><span>Creative Direction</span><small>Principles + visual approach</small></a></li>
+      <li><a href="#section-04" data-index="04"><em>04</em><span>Industry Overview</span><small>Digital, Fragrance, Medical, etc.</small></a></li>
+      <li><a href="#section-05" data-index="05"><em>05</em><span>Featured Work</span><small>Hero showcases</small></a></li>
+      <li><a href="#section-06" data-index="06"><em>06</em><span>Campaign Gallery</span><small>Asymmetrical grid</small></a></li>
+      <li><a href="#section-07" data-index="07"><em>07</em><span>Individual Showcase</span><small>Split-screen & full-width</small></a></li>
+      <li><a href="#section-08" data-index="08"><em>08</em><span>Visual Details</span><small>Type / Color / Composition</small></a></li>
+      <li><a href="#section-09" data-index="09"><em>09</em><span>Final Gallery</span><small>Cinematic collection</small></a></li>
+      <li><a href="#section-10" data-index="10"><em>10</em><span>Closing Experience</span><small>Contact + next</small></a></li>
+    </ol>
+    <div class="index-foot mono">SCROLL OR CLICK TO NAVIGATE — VIDEO SYNCED TO PROGRESS</div>
+  </div>
+</div>
+
+<!-- Right Rail Dots -->
+<div class="rail" aria-hidden="true">
+  <div class="rail-line"></div>
+  <div class="rail-dots" id="railDots"></div>
+  <div class="rail-label mono" id="railLabel">01 / CINEMATIC</div>
+</div>
+
+<!-- Bottom Hint -->
+<div class="bottom-hint mono">
+  <span class="hide-mobile">SCROLL TO DRIVE VIDEO — UP TO REVERSE • <span id="videoTimeHint">00:00</span> / <span id="videoDurationHint">--:--</span></span>
+  <span class="show-mobile">SCROLL TO EXPLORE — 10 CHAPTERS</span>
+  <span class="bottom-hint-line"></span>
+</div>
+
+<!-- Asset Guide Toggle -->
+<button class="asset-toggle mono" id="assetToggle" data-cursor="GUIDE">● ASSET GUIDE</button>
+
+<!-- Asset Guide Drawer -->
+<div class="asset-drawer" id="assetDrawer" aria-hidden="true">
+  <div class="asset-drawer-inner">
+    <div class="asset-head">
+      <h3>Asset Replacement System</h3>
+      <button id="assetClose" aria-label="Close">×</button>
+    </div>
+    <p class="mono small">Every image area is a placeholder. No client work is invented — drop your PNGs without touching the template structure.</p>
+    <div class="asset-grid">
+      <div><strong>01 — Video</strong><p>Replace <code>#bgVideo &lt;source&gt;</code> with your 1920×1080+ MP4. Keep <code>muted playsinline</code>. Poster auto-fallback.</p></div>
+      <div><strong>02 — Images</strong><p>Hover any card → <em>REPLACE</em> overlay. Click to upload or drag &amp; drop PNG/JPG. Ratio is preserved (<code>object-fit: contain</code> with letterbox).</p></div>
+      <div><strong>03 — Text</strong><p>All copy is editable. Search for <code>data-edit</code> or edit directly in HTML. Metadata fields are plain text.</p></div>
+      <div><strong>04 — Export for Behance</strong><p>Use <code>File → Export Section as PNG</code> (button on each section header) for Behance upload. Still frames preserve motion-inspired masks.</p></div>
+    </div>
+    <div class="asset-note mono">Tip: Keep original artwork proportions — grid uses contain + padded matte so nothing is cropped.</div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<main class="main">
+
+  <!-- ========= 01 — CINEMATIC OPENING ========= -->
+  <section class="section section--hero" id="section-01" data-section="01 — CINEMATIC OPENING">
+    <div class="section-label mono"><span>01 — CINEMATIC OPENING</span><span class="section-label-line"></span><button class="mono export-btn" data-export="01">EXPORT PNG</button></div>
+    <div class="hero-layout">
+      <div class="hero-eyebrow mono" data-reveal>
+        <span class="accent-dot"></span> CASE STUDY — MULTI-INDUSTRY SOCIAL ADVERTISING &nbsp;•&nbsp; 2024—2025 &nbsp;•&nbsp; TEMPLATE ONLY
+      </div>
+      <h1 class="hero-title" data-reveal>
+        <span class="hero-title-row"><span class="outline">SOCIAL</span><span class="hero-tag mono">SELECTED<br>WORKS 18–25</span></span>
+        <span class="hero-title-row solid" data-parallax="0.15">ADVERTISING</span>
+        <span class="hero-title-row subtle"><span>PORTFOLIO</span><span class="hero-year">©25</span></span>
+      </h1>
+      <div class="hero-bottom" data-reveal>
+        <div class="hero-desc">
+          <p>A cinematic template for premium social campaigns — fragrance, digital services, medical and beyond. Scroll drives the film. Replace the placeholders with your final PNGs.</p>
+          <div class="hero-meta mono">
+            <span>FOR — INTERNATIONAL CLIENTS</span>
+            <span>FORMAT — BEHANCE CASE STUDY / SITE</span>
+            <span>ROLE — TEMPLATE SYSTEM</span>
+          </div>
+        </div>
+        <div class="hero-actions">
+          <a href="#section-05" class="btn btn--primary" data-cursor="EXPLORE">VIEW FEATURED WORK — 05 <span>↗</span></a>
+          <div class="hero-scroll mono"><span>SCROLL</span><i></i></div>
+        </div>
+      </div>
+    </div>
+    <!-- floating timecode -->
+    <div class="timecode mono" id="heroTimecode">TC 00:00:00 — PLAYING ON SCROLL</div>
+  </section>
+
+  <!-- ========= 02 — PROJECT INTRODUCTION ========= -->
+  <section class="section section--intro" id="section-02" data-section="02 — INTRODUCTION">
+    <div class="section-label mono"><span>02 — PROJECT INTRODUCTION</span><span class="section-label-line"></span><button class="mono export-btn" data-export="02">EXPORT PNG</button></div>
+    <div class="intro-grid">
+      <div class="intro-main">
+        <h2 class="display" data-reveal>
+          Minimal<br>
+          <span class="serif-italic">cinematic</span> language<br>
+          for <span class="accent">commercial</span> impact.
+        </h2>
+        <div class="intro-copy" data-reveal>
+          <p class="lead">This template presents social advertising as editorial cinema. Dark charcoal foundation, generous negative space, and electric-blue accents let each brand retain its identity while the system stays unmistakably premium.</p>
+          <p>Designed for behance and portfolio sites — long-form scroll, pinned moments, and asymmetry inspired by experimental studios. No advertising creatives are included; every visual below is a replaceable placeholder for your original PNGs.</p>
+          <div class="inline-meta mono">
+            <span>⟶ Preserve original proportions — no cropping</span>
+            <span>⟶ Dark overlay ensures readability over bright video</span>
+          </div>
+        </div>
+      </div>
+      <aside class="intro-meta" data-reveal>
+        <div class="meta-card">
+          <div class="meta-row"><span class="mono">CLIENT</span><span class="editable" contenteditable="true">Your Client Name</span></div>
+          <div class="meta-row"><span class="mono">YEAR</span><span>2024 — 2025</span></div>
+          <div class="meta-row"><span class="mono">ROLE</span><span>Art Direction / Social Campaigns</span></div>
+          <div class="meta-row"><span class="mono">DELIVERABLES</span><span>Feed Posts, Stories, Reels Covers — Replace text</span></div>
+          <div class="meta-row"><span class="mono">INDUSTRIES</span><span>Digital Services, Fragrance, Medical Billing +</span></div>
+          <div class="meta-row"><span class="mono">TEMPLATE</span><span>Scroll-synced video • Cursor • Parallax</span></div>
+          <div class="meta-foot mono">All fields are editable — click to type</div>
+        </div>
+        <div class="intro-stat">
+          <div class="stat-number">10<span>/10</span></div>
+          <div class="stat-label mono">CHAPTERS — LONG-FORM CASE STUDY</div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ========= 03 — CREATIVE DIRECTION ========= -->
+  <section class="section section--direction" id="section-03" data-section="03 — CREATIVE DIRECTION">
+    <div class="section-label mono"><span>03 — CREATIVE DIRECTION</span><span class="section-label-line"></span><button class="mono export-btn" data-export="03">EXPORT PNG</button></div>
+    <div class="direction-head" data-reveal>
+      <h2 class="display small">Cinematic minimalism<br><span class="serif-italic">meets</span> commercial clarity</h2>
+      <p class="mono">Three principles — restrained, premium, editorial. Applied consistently across all brand categories.</p>
+    </div>
+    <div class="principles">
+      <article class="principle" data-reveal data-cursor="01">
+        <div class="principle-num mono">01</div>
+        <h3>Negative Space<br>as Luxury</h3>
+        <p>Generous margins and full-bleed moments let the work breathe. Dark charcoal (#0A0A0F) absorbs attention, white typography floats.</p>
+        <div class="principle-line"></div>
+        <span class="mono small">USE — Generous padding • 8px grid • 120px section rhythm</span>
+      </article>
+      <article class="principle" data-reveal data-cursor="02">
+        <div class="principle-num mono">02</div>
+        <h3>Scroll as<br>Timeline</h3>
+        <p>Background video is not decoration — it is navigation. Scroll advances the film, pauses on stillness, reverses on return.</p>
+        <div class="principle-line"></div>
+        <span class="mono small">USE — 1 scroll = 1 frame • Lerp 0.08 • RAF loop</span>
+      </article>
+      <article class="principle" data-reveal data-cursor="03">
+        <div class="principle-num mono">03</div>
+        <h3>Editorial<br>Motion</h3>
+        <p>Clipping masks, staggered grids, and subtle parallax — no bounce, no excess. Every movement is intentional.</p>
+        <div class="principle-line"></div>
+        <span class="mono small">USE — Clip reveal • 60ms stagger • mix-blend cursor</span>
+      </article>
+    </div>
+    <!-- mood strip placeholders -->
+    <div class="mood-strip" data-reveal>
+      <div class="mood-label mono">VISUAL APPROACH — REPLACE STRIP WITH MOOD IMAGES</div>
+      <div class="mood-track">
+        <div class="placeholder placeholder--mood" data-ratio="16:9" data-label="MOOD 01 — 16:9"><span>DROP PNG — MOOD 01</span></div>
+        <div class="placeholder placeholder--mood" data-ratio="4:5" data-label="MOOD 02 — 4:5"><span>DROP PNG — MOOD 02</span></div>
+        <div class="placeholder placeholder--mood" data-ratio="1:1" data-label="MOOD 03 — 1:1"><span>DROP PNG — MOOD 03</span></div>
+        <div class="placeholder placeholder--mood" data-ratio="21:9" data-label="MOOD 04 — 21:9"><span>DROP PNG — MOOD 04</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= 04 — INDUSTRY OVERVIEW ========= -->
+  <section class="section section--industries" id="section-04" data-section="04 — INDUSTRY OVERVIEW">
+    <div class="section-label mono"><span>04 — INDUSTRY OVERVIEW</span><span class="section-label-line"></span><button class="mono export-btn" data-export="04">EXPORT PNG</button></div>
+    <div class="industries-head" data-reveal>
+      <h2 class="display small">Multi-industry<br><span class="outline small">adaptability</span></h2>
+      <p>One system, distinct voices. Each category keeps its palette and tone — the dark editorial frame unifies them.</p>
+    </div>
+    <div class="industry-grid">
+      <article class="industry-card" data-reveal data-cursor="VIEW">
+        <div class="industry-top mono"><span>01 — DIGITAL SERVICES</span><span>↗</span></div>
+        <div class="placeholder placeholder--industry" data-ratio="4:5" data-label="DIGITAL SERVICES — 1080×1350"><span>DROP PNG — DIGITAL<br><small>1080×1350 • Feed Post</small></span></div>
+        <div class="industry-foot"><h4>Performance & SaaS</h4><p class="mono">Replace with your campaign — service, tech, growth.</p></div>
+      </article>
+      <article class="industry-card" data-reveal data-cursor="VIEW">
+        <div class="industry-top mono"><span>02 — FRAGRANCE & BEAUTY</span><span>↗</span></div>
+        <div class="placeholder placeholder--industry" data-ratio="1:1" data-label="FRAGRANCE — 1080×1080"><span>DROP PNG — FRAGRANCE<br><small>1080×1080 • Product Hero</small></span></div>
+        <div class="industry-foot"><h4>Editorial Luxury</h4><p class="mono">Replace with your campaign — scent, detail, still life.</p></div>
+      </article>
+      <article class="industry-card" data-reveal data-cursor="VIEW">
+        <div class="industry-top mono"><span>03 — MEDICAL BILLING</span><span>↗</span></div>
+        <div class="placeholder placeholder--industry" data-ratio="4:5" data-label="MEDICAL — 1080×1350"><span>DROP PNG — MEDICAL<br><small>Trust • Clarity • Care</small></span></div>
+        <div class="industry-foot"><h4>Trust & Clarity</h4><p class="mono">Replace with your campaign — healthcare, compliance.</p></div>
+      </article>
+      <article class="industry-card industry-card--wide" data-reveal data-cursor="VIEW">
+        <div class="industry-top mono"><span>04 — EMERGING VENTURES + CUSTOM</span><span>REPLACE LABEL</span></div>
+        <div class="placeholder placeholder--industry placeholder--wide" data-ratio="16:9" data-label="CUSTOM CATEGORY — 1920×1080"><span>DROP PNG — CUSTOM CATEGORY<br><small>Add / duplicate card for any industry — text is editable</small></span></div>
+        <div class="industry-foot"><h4>Modular — Add Your Own</h4><p class="mono">Duplicate this card in HTML — label, ratio, and caption are free text.</p></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========= 05 — FEATURED WORK ========= -->
+  <section class="section section--featured" id="section-05" data-section="05 — FEATURED WORK">
+    <div class="section-label mono"><span>05 — FEATURED WORK</span><span class="section-label-line"></span><button class="mono export-btn" data-export="05">EXPORT PNG</button></div>
+    <div class="featured-head" data-reveal>
+      <h2 class="display">Featured <span class="serif-italic">selections</span></h2>
+      <p class="mono">02 hero placements — largest scale, clipping-mask reveal. For your strongest creatives only.</p>
+    </div>
+
+    <div class="featured-list">
+      <div class="featured-item" data-reveal>
+        <div class="featured-media">
+          <div class="placeholder placeholder--featured" data-ratio="4:5" data-label="FEATURED 01 — 1080×1350 — HERO"><span>DROP PNG — FEATURED 01<br><small>Strongest creative — 1080×1350 • Will not be cropped</small></span></div>
+          <div class="featured-caption mono"><span>01 — HERO / DIGITAL SERVICES</span><span>1080×1350 — Feed • Original ratio preserved</span></div>
+        </div>
+        <div class="featured-meta">
+          <div class="mono small">PROJECT — Replace title</div>
+          <h3>Your campaign headline — editable</h3>
+          <p>Short context: objective, audience, platform. Keep it editorial — 1 to 2 lines. All text layers are plain HTML.</p>
+          <div class="tag-row mono"><span>1080×1350</span><span>Feed Post</span><span>Electric Accent</span></div>
+        </div>
+      </div>
+
+      <div class="featured-item featured-item--reverse" data-reveal>
+        <div class="featured-meta">
+          <div class="mono small">PROJECT — Replace title</div>
+          <h3>Second hero — fragrance / premium</h3>
+          <p>Use for contrasting industries side-by-side. Pinned caption stays while video progresses — cinematic pause.</p>
+          <div class="tag-row mono"><span>1080×1080</span><span>1:1 Square</span><span>Dark Matte</span></div>
+        </div>
+        <div class="featured-media">
+          <div class="placeholder placeholder--featured" data-ratio="1:1" data-label="FEATURED 02 — 1080×1080 — HERO"><span>DROP PNG — FEATURED 02<br><small>Second hero — 1080×1080 or 4:5</small></span></div>
+          <div class="featured-caption mono"><span>02 — HERO / FRAGRANCE</span><span>1080×1080 — Original artwork intact</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= 06 — CAMPAIGN GALLERY ========= -->
+  <section class="section section--gallery" id="section-06" data-section="06 — CAMPAIGN GALLERY">
+    <div class="section-label mono"><span>06 — CAMPAIGN GALLERY</span><span class="section-label-line"></span><button class="mono export-btn" data-export="06">EXPORT PNG</button></div>
+    <div class="gallery-head" data-reveal>
+      <h2 class="display small">Campaign <span class="serif-italic">gallery</span> — <br>asymmetrical grid</h2>
+      <p class="mono">06 placements — mixed ratios preserved. Hover → magnetic lift + EXPLORE cursor. Drag & drop to replace.</p>
+    </div>
+
+    <div class="campaign-grid" data-reveal>
+      <!-- Row intentionally asymmetrical -->
+      <div class="placeholder placeholder--gallery g-a" data-ratio="4:5" data-label="CAMPAIGN 01 — 1080×1350" data-cursor="DRAG"><span>01 — 4:5<br><small>1080×1350</small></span></div>
+      <div class="placeholder placeholder--gallery g-b" data-ratio="1:1" data-label="CAMPAIGN 02 — 1080×1080" data-cursor="DRAG"><span>02 — 1:1<br><small>1080×1080</small></span></div>
+      <div class="placeholder placeholder--gallery g-c" data-ratio="9:16" data-label="CAMPAIGN 03 — 1080×1920 — Story" data-cursor="DRAG"><span>03 — 9:16 Story<br><small>1080×1920</small></span></div>
+      <div class="placeholder placeholder--gallery g-d" data-ratio="4:5" data-label="CAMPAIGN 04 — 1080×1350" data-cursor="DRAG"><span>04 — 4:5<br><small>1080×1350</small></span></div>
+      <div class="placeholder placeholder--gallery g-e" data-ratio="16:9" data-label="CAMPAIGN 05 — 1920×1080 — Cover" data-cursor="DRAG"><span>05 — 16:9 Cover<br><small>1920×1080</small></span></div>
+      <div class="placeholder placeholder--gallery g-f" data-ratio="1:1" data-label="CAMPAIGN 06 — 1080×1080" data-cursor="DRAG"><span>06 — 1:1<br><small>1080×1080</small></span></div>
+    </div>
+    <div class="gallery-note mono" data-reveal>Asymmetrical editorial rhythm — no cropping. Placeholder uses <code>object-fit: contain</code> + charcoal matte so your PNGs stay pixel-perfect. Add or remove cells freely.</div>
+  </section>
+
+  <!-- ========= 07 — INDIVIDUAL PROJECT SHOWCASE ========= -->
+  <section class="section section--showcase" id="section-07" data-section="07 — INDIVIDUAL SHOWCASE">
+    <div class="section-label mono"><span>07 — INDIVIDUAL PROJECT SHOWCASE</span><span class="section-label-line"></span><button class="mono export-btn" data-export="07">EXPORT PNG</button></div>
+
+    <div class="showcase-hero" data-reveal>
+      <div class="mono small">FULL-WIDTH HERO — USE FOR KEY VISUAL</div>
+      <div class="placeholder placeholder--showcase-hero" data-ratio="16:9" data-label="SHOWCASE HERO — 1920×1080"><span>DROP PNG — FULL-WIDTH HERO — 1920×1080<br><small>For environmental / lifestyle extension of a campaign</small></span></div>
+      <div class="showcase-hero-caption mono"><span>CAMPAIGN — Replace name</span><span>1920×1080 • Keep original composition</span></div>
+    </div>
+
+    <div class="split" data-reveal>
+      <div class="split-media">
+        <div class="placeholder placeholder--split" data-ratio="4:5" data-label="SPLIT 01 — 1080×1350"><span>LEFT — 4:5<br><small>Close-up / typographic detail</small></span></div>
+      </div>
+      <div class="split-text">
+        <div class="mono small">01 — CLOSE-UP DETAIL</div>
+        <h3>Typography & composition — magnified</h3>
+        <p>Split-screen is for detail stories: type lockups, product macro, copy hierarchy. Video behind continues its timeline — content is pinned over motion.</p>
+        <ul class="mono checklist">
+          <li>⟶ Preserve 1:1 or 4:5 — matte prevents crop</li>
+          <li>⟶ Use electric-blue rule for emphasis</li>
+          <li>⟶ Caption stays aligned to 8px grid</li>
+        </ul>
+        <div class="tag-row mono"><span>Detail View</span><span>Editable Copy</span></div>
+      </div>
+    </div>
+
+    <div class="split split--reverse" data-reveal>
+      <div class="split-text">
+        <div class="mono small">02 — SUPPORTING IMAGERY</div>
+        <h3>Supporting frames — story extension</h3>
+        <p>Alternate left/right rhythm keeps long-form scroll cinematic without monotony. Replace right media with story sequence, carousel, or alt format.</p>
+        <ul class="mono checklist">
+          <li>⟶ Full control over left/right</li>
+          <li>⟶ All captions editable in HTML</li>
+          <li>⟶ Sticky panel option — see code comments</li>
+        </ul>
+      </div>
+      <div class="split-media">
+        <div class="placeholder placeholder--split" data-ratio="1:1" data-label="SPLIT 02 — 1080×1080"><span>RIGHT — 1:1<br><small>Supporting frame</small></span></div>
+      </div>
+    </div>
+
+    <!-- Triptych -->
+    <div class="triptych" data-reveal>
+      <div class="mono small">TRIPTYCH — THREE SUPPORTING FRAMES</div>
+      <div class="triptych-track">
+        <div class="placeholder placeholder--trip" data-ratio="4:5" data-label="TRIPTYCH 01 — 4:5"><span>TRI 01</span></div>
+        <div class="placeholder placeholder--trip" data-ratio="1:1" data-label="TRIPTYCH 02 — 1:1"><span>TRI 02</span></div>
+        <div class="placeholder placeholder--trip" data-ratio="4:5" data-label="TRIPTYCH 03 — 4:5"><span>TRI 03</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= 08 — VISUAL DETAILS ========= -->
+  <section class="section section--details" id="section-08" data-section="08 — VISUAL DETAILS">
+    <div class="section-label mono"><span>08 — VISUAL DETAILS</span><span class="section-label-line"></span><button class="mono export-btn" data-export="08">EXPORT PNG</button></div>
+    <div class="details-head" data-reveal>
+      <h2 class="display small">Visual <span class="serif-italic">details</span> — system</h2>
+      <p class="mono">For typography, palette, grid, and composition deep-dives. Replace each panel with your close-ups.</p>
+    </div>
+
+    <div class="details-grid" data-reveal>
+      <div class="detail-card detail-card--type">
+        <div class="detail-label mono">TYPOGRAPHY — REPLACE WITH TYPE SPECIMEN</div>
+        <div class="placeholder placeholder--detail" data-ratio="4:3" data-label="TYPOGRAPHY DETAIL — 1200×900"><span>TYPE SPECIMEN<br><small>Headline / Body / Caption hierarchy</small></span></div>
+        <div class="detail-foot">
+          <h4>Syne + Instrument Serif + Mono</h4>
+          <p class="mono">Oversized display, editorial serif italic, mono labels. 8vw → 96px clamp.</p>
+          <div class="swatch-row">
+            <span class="swatch" style="--c:#F8F8F6"><i></i> White</span>
+            <span class="swatch" style="--c:rgba(255,255,255,0.5)"><i></i> Muted</span>
+            <span class="swatch" style="--c:#3358FF"><i></i> Electric Blue</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-label mono">COLOR PALETTE — REPLACE WITH SWATCH SHEET</div>
+        <div class="placeholder placeholder--detail" data-ratio="1:1" data-label="PALETTE — 1080×1080"><span>PALETTE<br><small>Your brand colors on dark matte</small></span></div>
+        <div class="detail-foot">
+          <h4>Dark Charcoal Foundation</h4>
+          <p class="mono">#08080A • #141417 • #F8F8F6 • #3358FF — editable CSS variables.</p>
+        </div>
+      </div>
+
+      <div class="detail-card">
+        <div class="detail-label mono">COMPOSITION — REPLACE WITH GRID STUDY</div>
+        <div class="placeholder placeholder--detail" data-ratio="4:3" data-label="COMPOSITION — 1200×900"><span>COMPOSITION STUDY<br><small>Negative space • 8px system • Balance</small></span></div>
+        <div class="detail-foot">
+          <h4>Asymmetry & Balance</h4>
+          <p class="mono">Generous margins, pinned moments, restrained parallax.</p>
+        </div>
+      </div>
+
+      <div class="detail-card detail-card--wide">
+        <div class="detail-label mono">SPACING SYSTEM — 8 / 16 / 24 / 48 / 120</div>
+        <div class="placeholder placeholder--detail placeholder--wide" data-ratio="21:9" data-label="SPACING / LAYOUT — 1920×823"><span>LAYOUT SYSTEM — GENEROUS NEGATIVE SPACE<br><small>Full-width rule — replace with your spacing diagram</small></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= 09 — FINAL GALLERY ========= -->
+  <section class="section section--final-gallery" id="section-09" data-section="09 — FINAL GALLERY">
+    <div class="section-label mono"><span>09 — FINAL GALLERY</span><span class="section-label-line"></span><button class="mono export-btn" data-export="09">EXPORT PNG</button></div>
+    <div class="final-head" data-reveal>
+      <div>
+        <h2 class="display">Final <span class="serif-italic">collection</span></h2>
+        <p class="mono">Cinematic editorial composition — layered, overlapping, intentional. For Behance, export each row as still.</p>
+      </div>
+      <div class="final-index mono">09 / 10 — CINEMATIC COLLECTION<br>06 — 08 artworks • Mixed ratios</div>
+    </div>
+
+    <div class="final-masonry" data-reveal>
+      <div class="final-col final-col--large">
+        <div class="placeholder placeholder--final ph-tall" data-ratio="4:5" data-label="FINAL 01 — 1080×1350"><span>FINAL 01<br><small>4:5</small></span></div>
+        <div class="placeholder placeholder--final" data-ratio="16:9" data-label="FINAL 02 — 1920×1080"><span>FINAL 02 — 16:9</span></div>
+      </div>
+      <div class="final-col">
+        <div class="placeholder placeholder--final" data-ratio="1:1" data-label="FINAL 03 — 1080×1080"><span>FINAL 03 — 1:1</span></div>
+        <div class="placeholder placeholder--final ph-tall" data-ratio="4:5" data-label="FINAL 04 — 1080×1350"><span>FINAL 04 — 4:5</span></div>
+        <div class="placeholder placeholder--final" data-ratio="1:1" data-label="FINAL 05 — 1080×1080"><span>FINAL 05 — 1:1</span></div>
+      </div>
+      <div class="final-col final-col--overlap">
+        <div class="final-quote">
+          <p>“The system disappears — only the work remains, cinematic and true to ratio.”</p>
+          <span class="mono">— TEMPLATE PRINCIPLE</span>
+        </div>
+        <div class="placeholder placeholder--final ph-wide" data-ratio="4:5" data-label="FINAL 06 — 1080×1350"><span>FINAL 06 — 4:5</span></div>
+        <div class="placeholder placeholder--final" data-ratio="16:9" data-label="FINAL 07 — 1920×1080"><span>FINAL 07 — 16:9</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========= 10 — CLOSING EXPERIENCE ========= -->
+  <section class="section section--closing" id="section-10" data-section="10 — CLOSING">
+    <div class="section-label mono"><span>10 — CLOSING EXPERIENCE</span><span class="section-label-line"></span><button class="mono export-btn" data-export="10">EXPORT PNG</button></div>
+
+    <div class="closing-main" data-reveal>
+      <div class="closing-eyebrow mono"><span class="accent-dot"></span> CLOSING — TEMPLATE END • REPLACE WITH YOUR STATEMENT</div>
+      <h2 class="closing-title">
+        <span>LET'S</span>
+        <span class="outline">CREATE</span>
+        <span class="serif-italic">something</span>
+        <span class="solid">CINEMATIC</span>
+      </h2>
+      <p class="closing-desc">This is a template — no claims, no invented results. Insert your original PNGs, edit the copy, and publish. The dark editorial system, scroll-driven film, and generous space do the rest.</p>
+    </div>
+
+    <div class="closing-contact" data-reveal>
+      <div class="contact-row">
+        <span class="mono">EMAIL</span>
+        <a href="mailto:hello@murshad.studio" class="contact-link" data-cursor="MAIL">hello@murshad.studio — Replace with yours →</a>
+      </div>
+      <div class="contact-row">
+        <span class="mono">BEHANCE</span>
+        <a href="#" class="contact-link" data-cursor="VIEW">behance.net/yourname — Replace link →</a>
+      </div>
+      <div class="contact-row">
+        <span class="mono">INSTAGRAM</span>
+        <a href="#" class="contact-link" data-cursor="VIEW">@yourhandle — Replace handle →</a>
+      </div>
+      <div class="contact-row">
+        <span class="mono">LOCATION</span>
+        <span class="contact-text">Remote — Worldwide — Editable</span>
+      </div>
+    </div>
+
+    <div class="closing-footer" data-reveal>
+      <div class="mono small">TEMPLATE v1.0 — DARK CHARCOAL • ELECTRIC BLUE • CINEMATIC VIDEO • CUSTOM CURSOR • EDITORIAL GRID<br>Built for Behance case studies & portfolio sites — replace all placeholders with original PNGs. No assets invented.</div>
+      <div class="closing-actions">
+        <button class="btn btn--primary" id="backToTop" data-cursor="TOP">BACK TO TOP ↑</button>
+        <span class="mono closing-year">©2025 — MURSHAD STUDIO — ALL RIGHTS RESERVED</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Lightbox for preview -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+  <div class="lightbox-inner">
+    <img id="lightboxImg" alt="">
+    <div class="lightbox-meta mono"><span id="lightboxLabel"></span><button id="lightboxClose">CLOSE ×</button></div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
